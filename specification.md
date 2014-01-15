@@ -238,12 +238,12 @@ Authorization: idp-jwt eyJhbGciOiJSUzI1NiIsImtp…zpsEabFfYMGkbIZCrayNoVD47DEuFl
 ```
 
 ## Authentication Migration ##
-Support for JWT is expected to release in early Q22014.  Until the developer portal and ticking signing authority is esablished it is important that services exposed do not pass several pieces of information as parameters.  These include the <code>shopper id</code>, <code>private label id</code> and <code>impersonation context</code>.  It is suggested that services pass these values in custom HTTP header values (e.g. <code>X-Shopper-Id</code>) until the switchover occurs, identifying these so they may be addressed easily.
+Support for JWT is expected to release in early 2Q2014.  Until the developer portal and ticket signing authority is established it is important that services exposed do not pass several pieces of information as parameters.  These include the <code>shopper id</code>, <code>private label id</code> and <code>impersonation context</code>.  It is suggested that services pass these values in custom HTTP header values (e.g. <code>X-Shopper-Id</code>) until the switchover occurs, identifying these so they may be addressed easily.
 
 ## Portability ##
 To increase developer friendliness services MUST look for the <code>Authorization</code> HTTP header then for a <code>auth_idp</code> cookie.  This allows developers to authorize into the developer portal and browse APIs through a browser.
 
-Services SHOULD look for the authorization token at the cookie then the header.  If both are present the service MUST deny the request and return a 401 with a DuplicateAuthorizationToken [error](#errors) to prevent session poisoning.
+If both the header and cookie are present the service MUST deny the request and return a 401 with a DuplicateAuthorizationToken [error](#errors) to prevent session poisoning.
 
 ----------------------------------------
 
